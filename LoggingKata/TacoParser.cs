@@ -9,7 +9,7 @@
         
         public ITrackable Parse(string line)
         {
-            logger.LogInfo("Begin parsing");
+            logger.LogInfo($"Begin parsing for {line}");
 
             // Take the line and use line.Split(',') to split it up into an array of strings, separated by the char ','
             var cells = line.Split(',');
@@ -18,6 +18,7 @@
             if (cells.Length < 3)
             {
                 // Log that and return null
+                logger.LogError("Error, array length not long enough. Needs three objects");
                 // If one record parsing fails, return null
                 return null; 
             }
@@ -27,7 +28,7 @@
             // grab the longitude from your array at index 1
             var lon = double.Parse(cells[1]);
             // grab the name from your array at index 2
-            var name = cells[2];
+            string name = cells[2];
             #region
             // Parse your string as a `double`
             // which is similar to parsing a string as an `int`
@@ -42,7 +43,15 @@
 
             tacoBell1.Name = name;
             tacoBell1.Location = new Point { Latitude = lat, Longitude = lon };
+
+            //OR 
+            //var point = new Point();
+            //point.Latitude = lat;
+            //point.Longitude = lon;
+            //tacoBell1.Location = point;
             
+            //CANNOT DO THIS: 
+            //tacoBell.Location.Latitude = latitude;
 
             // Then, return the instance of your TacoBell class
             // Since it conforms to ITrackable
