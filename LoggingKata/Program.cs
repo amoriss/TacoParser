@@ -90,7 +90,7 @@ namespace LoggingKata
             // Once you've looped through everything, you've found the two Taco Bells farthest away from each other.
 
             Console.WriteLine($"{tb1.Name} and {tb2.Name} are the two Taco Bells furthest apart");
-            Console.WriteLine($"They are {Math.Round(distance * 0.00062, 2)} miles apart.");
+            Console.WriteLine($"They are {Math.Round((distance * 0.00062), 2)} miles apart.");
 
            
 
