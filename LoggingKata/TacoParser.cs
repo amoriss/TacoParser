@@ -9,10 +9,10 @@
         
         public ITrackable Parse(string line)
         {
-            logger.LogInfo($"Begin parsing for {line}");
+            //logger.LogInfo($"Begin parsing for {line}");
 
             // Take the line and use line.Split(',') to split it up into an array of strings, separated by the char ','
-            var cells = line.Split(',');
+            string[] cells = line.Split(',');
 
             // If array.Length is less than 3, something went wrong
             if (cells.Length < 3)

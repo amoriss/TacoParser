@@ -17,19 +17,19 @@ namespace LoggingKata
             // Find the two Taco Bells that are the furthest from one another.
             // You'll need two nested forloops ---------------------------
 
-            logger.LogInfo("Log initialized");
+            //logger.LogInfo("Log initialized");
 
             // use File.ReadAllLines(path) to grab all the lines from your csv file
             // Log and error if you get 0 lines and a warning if you get 1 line
             var lines = File.ReadAllLines(csvPath);
 
-            logger.LogInfo($"Lines: {lines[0]}");
+            //logger.LogInfo($"Lines: {lines[0]}");
 
             // Create a new instance of your TacoParser class
             var parser = new TacoParser();
 
             // Grab an IEnumerable of locations using the Select command: var locations = lines.Select(parser.Parse);
-            var locations = lines.Select(parser.Parse).ToArray();
+            ITrackable[] locations = lines.Select(parser.Parse).ToArray(); //The parser.Parse method is being passed as a delegate (or a method reference) to the Select method. //without parentheses, you're not calling the method. Instead, you're passing a reference to the method itself, which Select will then call for each element in lines.
             //Select using Linq
 
             //OR
