@@ -1,4 +1,5 @@
-﻿using Serilog;
+﻿using System;
+using Serilog;
 
 namespace LoggingKata
 {
@@ -7,30 +8,36 @@ namespace LoggingKata
     /// </summary>
     public class TacoParser
     {
-        readonly ILog logger = new TacoLogger();
-
-        public ITrackable Parse(string line)
+       public ITrackable Parse(string line)
         {
-            // Take the line and split it up into an array of strings
-            //"34.073638,-84.677017,Taco Bell Acwort..."
-            string[] cells = line.Split(',');
-
-            // If array's length is less than 3, something went wrong
-            if (cells.Length < 3)
+            try
             {
-                Log.Error("Array length is less than three objects. Unable to Parse.");
+                //ex.: "34.073638,-84.677017,Taco Bell Acwort..."
+                //splits line into array of strings
+                string[] cells = line.Split(',');
+
+                if (cells.Length < 3)
+                {
+                    Log.Error("Array length is less than three objects. Unable to Parse.");
+                    return null;
+                }
+
+                var lat = double.Parse(cells[0]);
+                var lon = double.Parse(cells[1]);
+                string name = cells[2];
+                TacoBell tacoBell1 = new TacoBell();
+
+                tacoBell1.Name = name;
+                tacoBell1.Location = new Point { Latitude = lat, Longitude = lon };
+                Log.Information("Parsed TacoBell. Name:  {Name} Latitude: {Latitude} Longitude: {Longitude}", name, lat,
+                    lon);
+                return tacoBell1;
+            }
+            catch (Exception e)
+            {
+                Log.Error(e, "Error parsing {Line}", line);
                 return null;
             }
-
-            var lat = double.Parse(cells[0]);
-            var lon = double.Parse(cells[1]);
-            string name = cells[2];
-            TacoBell tacoBell1 = new TacoBell();
-
-            tacoBell1.Name = name;
-            tacoBell1.Location = new Point { Latitude = lat, Longitude = lon };
-
-            return tacoBell1;
         }
     }
 }
