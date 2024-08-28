@@ -9,50 +9,22 @@ namespace LoggingKata
     class Program
     {
         static readonly ILog logger = new TacoLogger();
-        const string csvPath = "TacoBell-US-AL.csv";
+
 
         static void Main(string[] args)
         {
             // PROGRAM OBJECTIVE:  Find the two Taco Bells that are the furthest from one another.
 
-            //file as string array
-            var lines = ReadFile(csvPath);
+            //file returned as string array
+            var lines = FileReader.ReadFile();
 
             //file as ITrackable array
-            var locations = FileStringArrayToITrackableArray(lines);
-            
+            var processor = new DataProcessor();
+            var locations = processor.FileStringArrayToITrackableArray(lines);
+
             CompareITrackables(locations);
-
-           
         }
 
-        public static string[] ReadFile(string csvPath)
-        {
-            // grab all the lines from csv file
-            var lines = File.ReadAllLines(csvPath);
-            return lines;
-        }
-
-        public static ITrackable[] FileStringArrayToITrackableArray(string[] fileLines)
-        {
-            //The parser.Parse method is being passed as a delegate (or a method reference) to the Select LINQ method. 
-            var parser = new TacoParser();
-            ITrackable[] locations = fileLines.Select(parser.Parse).ToArray();
-            #region OtherOptions
-
-            //OR Option 2
-            //ITrackable[] locations = lines.Select(line => parser.Parse(line)).ToArray();
-
-            //OR Option 3
-            //var tacoList = new List<ITrackable>();
-            //foreach (var line in lines)
-            //{
-            //    tacoList.Add(parser.Parse(line));
-            //}
-
-            #endregion
-            return locations;
-        }
 
         public static void CompareITrackables(ITrackable[] locations)
         {
@@ -100,6 +72,5 @@ namespace LoggingKata
             //Distance in miles
             Console.WriteLine($"They are {Math.Round((distance * 0.00062), 2)} miles apart.");
         }
-        
     }
 }
