@@ -1,7 +1,9 @@
-﻿namespace LoggingKata
+﻿using Serilog;
+
+namespace LoggingKata
 {
     /// <summary>
-    /// Parses a comma separated string into a TacoBell intance
+    /// Parses a comma separated string into a TacoBell instance
     /// </summary>
     public class TacoParser
     {
@@ -16,7 +18,7 @@
             // If array's length is less than 3, something went wrong
             if (cells.Length < 3)
             {
-                logger.LogError("Error, array length not long enough. Needs three objects");
+                Log.Error("Array length is less than three objects. Unable to Parse.");
                 return null;
             }
 

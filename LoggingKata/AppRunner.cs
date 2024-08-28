@@ -15,7 +15,7 @@ namespace LoggingKata
             var locations = processor.StringArrayToITrackableArray(lines);
             
             //finds two Taco Bells Furthest Apart
-            LocationComparer.FindTwoFurthestTacoBells(locations);
+            LocationComparer.DisplayTheTwoFurthestTacoBells(locations);
         }
       
     }
