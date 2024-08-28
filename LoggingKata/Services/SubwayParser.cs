@@ -3,18 +3,15 @@ using Serilog;
 
 namespace LoggingKata
 {
-   
-    public class TacoParser
+    public class SubwayParser
     {
         /// <summary>
-        /// Parses a comma separated string into a TacoBell instance
+        /// Parses a comma separated string into a Subway instance
         /// </summary>
         public ITrackable Parse(string line)
         {
             try
             {
-                //ex.: "34.073638,-84.677017,Taco Bell Acwort..."
-                //splits line into array of strings
                 string[] cells = line.Split(',');
 
                 if (cells.Length < 3)
@@ -26,13 +23,13 @@ namespace LoggingKata
                 var lat = double.Parse(cells[0]);
                 var lon = double.Parse(cells[1]);
                 string name = cells[2];
-                TacoBell tacoBell1 = new TacoBell();
+                Subway subway = new Subway();
 
-                tacoBell1.Name = name;
-                tacoBell1.Location = new Point { Latitude = lat, Longitude = lon };
-                Log.Information("Parsed TacoBell. Name:  {Name} Latitude: {Latitude} Longitude: {Longitude}", name, lat,
+                subway.Name = name;
+                subway.Location = new Point { Latitude = lat, Longitude = lon };
+                Log.Information("Parsed Subway. Name:  {Name} Latitude: {Latitude} Longitude: {Longitude}", name, lat,
                     lon);
-                return tacoBell1;
+                return subway;
             }
             catch (Exception e)
             {
