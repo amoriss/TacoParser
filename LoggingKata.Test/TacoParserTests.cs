@@ -18,9 +18,11 @@ namespace LoggingKata.Test
             Assert.NotNull(actual);
         }
 
-        //Tests to see if the Parse method is parsing the Latitude properly
+
         [Theory]
         [InlineData("34.073638, -84.677017, Taco Bell Acwort...", 34.073638)]
+        [InlineData("34.035985,-84.683302,Taco Bell Acworth...", 34.035985)]
+        [InlineData("34.087508,-84.575512,Taco Bell Acworth...", 34.087508)]
         public void ShouldParseLatitude(string line, double expected)
         {
             // Arrange 
@@ -33,9 +35,11 @@ namespace LoggingKata.Test
             Assert.Equal(actual.Location.Latitude, expected);
         }
 
-        //Tests to see if the Parse method is parsing the Longitude properly
+
         [Theory]
         [InlineData("34.073638, -84.677017, Taco Bell Acwort...", -84.677017)]
+        [InlineData("34.035985,-84.683302,Taco Bell Acworth...", -84.683302)]
+        [InlineData("34.087508,-84.575512,Taco Bell Acworth...", -84.575512)]
         public void ShouldParseLongitude(string line, double expected)
         {
             //Arrange

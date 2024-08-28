@@ -11,13 +11,13 @@ namespace LoggingKata
             _tacoParser = new TacoParser();
         }
 
-        public ITrackable[] FileStringArrayToITrackableArray(string[] fileLines)
+        public ITrackable[] StringArrayToITrackableArray(string[] fileLines)
         {
             //var parser = new TacoParser();
             //The parser.Parse method is being passed as a delegate (or a method reference) to the Select LINQ method.
             ITrackable[] locations = fileLines.Select(_tacoParser.Parse).ToArray();
 
-            #region OtherOptions
+            #region OtherParseOptions
 
             //OR Option 2
             //ITrackable[] locations = lines.Select(line => parser.Parse(line)).ToArray();

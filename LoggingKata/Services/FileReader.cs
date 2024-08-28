@@ -4,13 +4,8 @@ namespace LoggingKata
 {
     public class FileReader
     {
-        private static string _csvPath;
+        private static string _csvPath = "Data/TacoBell-US-AL.csv";
 
-        public FileReader()
-        {
-            _csvPath = "TacoBell-US-AL.csv";
-        }
-        
         public static string[] ReadFile()
         {
             // stores content of the file as a string array
