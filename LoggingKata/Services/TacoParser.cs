@@ -4,7 +4,7 @@ using Serilog;
 namespace LoggingKata
 {
    
-    public class TacoParser
+    public class TacoParser : IParser
     {
         /// <summary>
         /// Parses a comma separated string into a TacoBell instance
@@ -26,13 +26,13 @@ namespace LoggingKata
                 var lat = double.Parse(cells[0]);
                 var lon = double.Parse(cells[1]);
                 string name = cells[2];
-                TacoBell tacoBell1 = new TacoBell();
+                TacoBell tacoBell = new TacoBell();
 
-                tacoBell1.Name = name;
-                tacoBell1.Location = new Point { Latitude = lat, Longitude = lon };
+                tacoBell.Name = name;
+                tacoBell.Location = new Point { Latitude = lat, Longitude = lon };
                 Log.Information("Parsed TacoBell. Name:  {Name} Latitude: {Latitude} Longitude: {Longitude}", name, lat,
                     lon);
-                return tacoBell1;
+                return tacoBell;
             }
             catch (Exception e)
             {

@@ -3,7 +3,7 @@ using Serilog;
 
 namespace LoggingKata
 {
-    public class SubwayParser
+    public class SubwayParser : IParser
     {
         /// <summary>
         /// Parses a comma separated string into a Subway instance

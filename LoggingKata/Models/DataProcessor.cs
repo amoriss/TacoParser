@@ -1,14 +1,17 @@
 ﻿using System.Linq;
+using Serilog;
 
 namespace LoggingKata
 {
     public class DataProcessor
     {
         private TacoParser _tacoParser;
+        private SubwayParser _subwayParser;
 
         public DataProcessor()
         {
             _tacoParser = new TacoParser();
+            _subwayParser = new SubwayParser();
         }
 
         /// <summary>
@@ -16,10 +19,14 @@ namespace LoggingKata
         /// </summary>
         /// <param name="fileLines"></param>
         /// <returns>an ITrackable array</returns>
-        public ITrackable[] StringArrayToITrackableArray(string[] fileLines)
+        public ITrackable[] StringArrayToITrackableArray(string[] fileLines, IParser parser)
         {
+            if (fileLines is null)
+            {
+                Log.Error("file lines are null");
+            }
             //The parser.Parse method is being passed as a delegate (or a method reference) to the Select LINQ method.
-            ITrackable[] locations = fileLines.Select(_tacoParser.Parse).ToArray();
+            ITrackable[] locations = fileLines.Select(parser.Parse).ToArray();
 
             #region OtherParseOptions
 
@@ -36,6 +43,18 @@ namespace LoggingKata
             #endregion
 
             return locations;
+        }
+
+        public ITrackable[] ProcessTacoBellData(string[] fileLines)
+        {
+            var tacoData = StringArrayToITrackableArray(fileLines, _tacoParser);
+            return tacoData;
+        }
+
+        public ITrackable[] ProcessSubwayData(string[] fileLines)
+        {
+            var subwayData = StringArrayToITrackableArray(fileLines, _subwayParser);
+            return subwayData;
         }
     }
 }

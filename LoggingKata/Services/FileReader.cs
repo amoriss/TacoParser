@@ -6,7 +6,7 @@ namespace LoggingKata
 {
     public class FileReader
     {
-        private static string _csvPath = "Data/TacoBell-US-AL.csv";
+        private static readonly string _csvPath = "Data/Subway-US-AUS.csv";
 
         /// <summary>
         /// Reads contents of a file
@@ -16,6 +16,11 @@ namespace LoggingKata
         {
             try
             {
+                if (!File.Exists(_csvPath))
+                {
+                    Log.Error("File does not exist.");
+                }
+                Console.WriteLine(_csvPath);
                 var lines = File.ReadAllLines(_csvPath);
                 Log.Information("File read successfully from {CsvPath}.", _csvPath);
                 return lines;
