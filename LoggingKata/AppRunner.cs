@@ -1,5 +1,6 @@
 ﻿using System;
 using GeoCoordinatePortable;
+using LoggingKata.Utlities;
 using Serilog;
 
 namespace LoggingKata
@@ -21,8 +22,8 @@ namespace LoggingKata
             var processor = new DataProcessor();
             var tacoData = processor.ProcessTacoBellData(lines);
 
-            //finds two Taco Bells Furthest Apart
-            LocationComparer.DisplayTheTwoFurthestTacoBells(tacoData);
+            //displays two Taco Bells Furthest Apart
+            DisplayHelper.DisplayTheTwoFurthestTacoBells(tacoData);
         }
     }
 }
