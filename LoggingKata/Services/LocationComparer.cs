@@ -13,9 +13,19 @@ namespace LoggingKata
             //two locations furthest apart from each other
             Console.WriteLine($"{tb1.Name} and {tb2.Name} are the two Taco Bells furthest apart.");
             //Distance in miles
-            Console.WriteLine($"They are {Math.Round((distance * 0.00062), 2)} miles apart.");
+            Console.WriteLine($"They are {ConvertMetersToMiles(distance)} miles apart.");
         }
 
+        public static double ConvertMetersToMiles(double distanceInMeters)
+        {
+            return Math.Round((distanceInMeters * 0.00062), 2);
+        }
+
+        /// <summary>
+        /// iteration through the locations and finds the two Taco Bells furthest apart and the distance between them
+        /// </summary>
+        /// <param name="locations"></param>
+        /// <returns>two ITrackables (Taco Bells) and the distance in meters as a double</returns>
         public static (ITrackable, ITrackable, double) GetTwoFurthestTacoBells(ITrackable[] locations)
         {
             ITrackable tb1 = new TacoBell();

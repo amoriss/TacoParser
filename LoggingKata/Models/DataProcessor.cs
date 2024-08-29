@@ -23,7 +23,7 @@ namespace LoggingKata
         {
             if (fileLines is null)
             {
-                Log.Error("file lines are null");
+                Log.Error("File lines are null");
             }
             //The parser.Parse method is being passed as a delegate (or a method reference) to the Select LINQ method.
             ITrackable[] locations = fileLines.Select(parser.Parse).ToArray();
