@@ -6,7 +6,7 @@ namespace LoggingKata.Test
     public class RestaurantParserTests
     {
         [Fact]
-        public void Parse_ShoudlReturnNOnNull_WhenGivenValidInput()
+        public void Parse_ShouldReturnNOnNull_WhenGivenValidInput()
         {
             //Arrange
             var tacoParser = new RestaurantParser();
@@ -20,10 +20,10 @@ namespace LoggingKata.Test
 
 
         [Theory]
-        [InlineData("34.073638, -84.677017, Taco Bell Acwort...", 34.073638)]
-        [InlineData("32.571331,-85.499655,Taco Bell Auburn", 32.571331)]
-        [InlineData("31.306794,-85.714414,Taco Bell Daleville.", 31.306794)]
-        public void Parse_ShouldExtractCorrectLatitude_WhenGivenTacoLocationString(string line, double expected)
+        [InlineData("30.365453,-97.688556,Norwood Park Plaza", 30.365453)]
+        [InlineData("30.425159,-97.791797,Walden Park Shopping Center", 30.425159)]
+        [InlineData("30.266868,-97.721093,Eastland Plaza Shopping Ctr", 30.266868)]
+        public void Parse_ShouldExtractCorrectLatitude_WhenGivenLocationString(string line, double expected)
         {
             // Arrange 
             var tacoParser = new RestaurantParser();
@@ -37,10 +37,10 @@ namespace LoggingKata.Test
 
 
         [Theory]
-        [InlineData("34.073638, -84.677017, Taco Bell Acwort...", -84.677017)]
-        [InlineData("32.571331,-85.499655,Taco Bell Auburn", -85.499655)]
-        [InlineData("31.306794,-85.714414,Taco Bell Daleville.", -85.714414)]
-        public void Parse_ShouldExtractCorrectLongitude_WhenGivenTacoLocationString(string line, double expected)
+        [InlineData("30.365453,-97.688556,Norwood Park Plaza", -97.688556)]
+        [InlineData("30.425159,-97.791797,Walden Park Shopping Center", -97.791797)]
+        [InlineData("30.266868,-97.721093,Eastland Plaza Shopping Ctr", -97.721093)]
+        public void Parse_ShouldExtractCorrectLongitude_WhenGivenLocationString(string line, double expected)
         {
             //Arrange
             var tacoParser = new RestaurantParser();
