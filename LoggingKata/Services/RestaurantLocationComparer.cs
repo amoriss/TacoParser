@@ -1,23 +1,15 @@
 ﻿using System;
 using GeoCoordinatePortable;
-using LoggingKata.Utlities;
 
 namespace LoggingKata
 {
-    public class TacoBellLocationComparer
+    public class RestaurantLocationComparer
     {
         
-
-    
-        /// <summary>
-        /// iteration through the locations and finds the two Taco Bells furthest apart and the distance between them
-        /// </summary>
-        /// <param name="locations"></param>
-        /// <returns>two ITrackables (Taco Bells) and the distance in meters as a double</returns>
-        public static (ITrackable, ITrackable, double) GetTwoFurthestTacoBells(ITrackable[] locations)
+        public static (ITrackable, ITrackable, double) GetTwoFurthestRestaurants(ITrackable[] locations)
         {
-            ITrackable tb1 = new TacoBell();
-            ITrackable tb2 = new TacoBell();
+            ITrackable sb1 = new Restaurant();
+            ITrackable sb2 = new Restaurant();
 
             double distance = 0;
 
@@ -43,21 +35,20 @@ namespace LoggingKata
                     if (corA.GetDistanceTo(corB) > distance)
                     {
                         distance = corA.GetDistanceTo(corB);
-                        tb1 = locA;
-                        tb2 = locB;
+                        sb1 = locA;
+                        sb2 = locB;
                     }
                 }
 
                 #endregion
             }
 
-            return (tb1, tb2, distance);
+            return (sb1, sb2, distance);
         }
-        
-        public static (ITrackable, ITrackable, double) GetTwoClosestTacoBells(ITrackable[] locations)
+        public static (ITrackable, ITrackable, double) GetTwoClosestRestaurants(ITrackable[] locations)
         {
-            ITrackable tb1 = new TacoBell();
-            ITrackable tb2 = new TacoBell();
+            ITrackable sb1 = new Restaurant();
+            ITrackable sb2 = new Restaurant();
 
             double minDistance = double.MaxValue;
 
@@ -71,7 +62,7 @@ namespace LoggingKata
                 // set first location's geocooridnates
                 var corA = new GeoCoordinate(locA.Location.Latitude, locA.Location.Longitude);
 
-                for (int x = 1; x < locations.Length; x++)
+                for (int x = 0; x < locations.Length; x++)
                 {
                     //second location
                     var locB = locations[x];
@@ -79,22 +70,20 @@ namespace LoggingKata
                     //set second location's geocoordinates
                     var corB = new GeoCoordinate(locB.Location.Latitude, locB.Location.Longitude);
 
-                    double distance = corA.GetDistanceTo(corB);
                     // Comparing and updating the distance 
-                    if (distance > 0 && distance < minDistance)
+                    double distance = corA.GetDistanceTo(corB);
+                    if ( distance > 0 && distance <minDistance)
                     {
                         minDistance = distance;
-                        tb1 = locA;
-                        tb2 = locB;
+                        sb1 = locA;
+                        sb2 = locB;
                     }
                 }
 
                 #endregion
             }
 
-            return (tb1, tb2, minDistance);
+            return (sb1, sb2, minDistance);
         }
-
-       
     }
 }

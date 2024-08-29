@@ -5,13 +5,12 @@ namespace LoggingKata
 {
     public class DataProcessor
     {
-        private TacoParser _tacoParser;
-        private SubwayParser _subwayParser;
+        private RestaurantParser _restaurantParser;
+
 
         public DataProcessor()
         {
-            _tacoParser = new TacoParser();
-            _subwayParser = new SubwayParser();
+            _restaurantParser = new RestaurantParser();
         }
 
         /// <summary>
@@ -25,6 +24,7 @@ namespace LoggingKata
             {
                 Log.Error("File lines are null");
             }
+
             //The parser.Parse method is being passed as a delegate (or a method reference) to the Select LINQ method.
             ITrackable[] locations = fileLines.Select(parser.Parse).ToArray();
 
@@ -45,16 +45,12 @@ namespace LoggingKata
             return locations;
         }
 
-        public ITrackable[] ProcessTacoBellData(string[] fileLines)
+        public ITrackable[] ProcessRestaurantData(string[] fileLines)
         {
-            var tacoData = StringArrayToITrackableArray(fileLines, _tacoParser);
+            var tacoData = StringArrayToITrackableArray(fileLines, _restaurantParser);
             return tacoData;
         }
 
-        public ITrackable[] ProcessSubwayData(string[] fileLines)
-        {
-            var subwayData = StringArrayToITrackableArray(fileLines, _subwayParser);
-            return subwayData;
-        }
+        
     }
 }
