@@ -3,7 +3,6 @@ using Serilog;
 
 namespace LoggingKata
 {
-   
     public class TacoParser : IParser
     {
         /// <summary>
@@ -13,8 +12,8 @@ namespace LoggingKata
         {
             try
             {
-                //ex.: "34.073638,-84.677017,Taco Bell Acwort..."
                 //splits line into array of strings
+                //ex.: "34.073638,-84.677017,Taco Bell Acwort..."
                 string[] cells = line.Split(',');
 
                 if (cells.Length < 3)

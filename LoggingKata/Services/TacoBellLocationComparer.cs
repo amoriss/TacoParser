@@ -59,7 +59,7 @@ namespace LoggingKata
             ITrackable tb1 = new TacoBell();
             ITrackable tb2 = new TacoBell();
 
-            double distance = 0;
+            double minDistance = double.MaxValue;
 
             for (int i = 0; i < locations.Length; i++)
             {
@@ -79,10 +79,11 @@ namespace LoggingKata
                     //set second location's geocoordinates
                     var corB = new GeoCoordinate(locB.Location.Latitude, locB.Location.Longitude);
 
+                    double distance = corA.GetDistanceTo(corB);
                     // Comparing and updating the distance 
-                    if (corA.GetDistanceTo(corB) < distance)
+                    if (distance > 0 && distance < minDistance)
                     {
-                        distance = corA.GetDistanceTo(corB);
+                        minDistance = corA.GetDistanceTo(corB);
                         tb1 = locA;
                         tb2 = locB;
                     }
@@ -91,7 +92,7 @@ namespace LoggingKata
                 #endregion
             }
 
-            return (tb1, tb2, distance);
+            return (tb1, tb2, minDistance);
         }
 
        

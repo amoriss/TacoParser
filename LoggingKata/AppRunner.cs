@@ -23,7 +23,7 @@ namespace LoggingKata
             var tacoData = processor.ProcessTacoBellData(lines);
 
             //displays two Taco Bells Furthest Apart
-            DisplayHelper.DisplayTheTwoFurthestTacoBells(tacoData);
+            DisplayHelper.DisplayTheTwoClosestTacoBells(tacoData);
         }
     }
 }
