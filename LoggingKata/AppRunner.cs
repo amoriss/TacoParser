@@ -19,10 +19,10 @@ namespace LoggingKata
             
             //file as ITrackable array
             var processor = new DataProcessor();
-            var subwayData = processor.ProcessSubwayData(lines);
+            var tacoData = processor.ProcessTacoBellData(lines);
             
             //finds two Taco Bells Furthest Apart
-            LocationComparer.DisplayTheTwoFurthestSubways(subwayData);
+            LocationComparer.DisplayTheTwoFurthestTacoBells(tacoData);
         }
       
     }

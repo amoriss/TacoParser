@@ -6,7 +6,7 @@ namespace LoggingKata
 {
     public class FileReader
     {
-        private static readonly string _csvPath = "Data/Subway-US-AUS.csv";
+        private static readonly string _csvPath = "Data/TacoBell-US-AL.csv";
 
         /// <summary>
         /// Reads contents of a file
