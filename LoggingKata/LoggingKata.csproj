@@ -15,6 +15,9 @@
     <None Update="Data\Subway-US-AUS.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Data\TacoBell-US-AUS.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GeoCoordinate.NetCore" Version="1.0.0.1" />

@@ -83,7 +83,7 @@ namespace LoggingKata
                     // Comparing and updating the distance 
                     if (distance > 0 && distance < minDistance)
                     {
-                        minDistance = corA.GetDistanceTo(corB);
+                        minDistance = distance;
                         tb1 = locA;
                         tb2 = locB;
                     }

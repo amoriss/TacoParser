@@ -34,5 +34,15 @@ namespace LoggingKata.Utlities
             //Distance in miles
             Console.WriteLine($"They are {ConversionHelper.ConvertMetersToMiles(distance)} miles apart.");
         }
+        public static void DisplayTheTwoClosestSubways(ITrackable[] locations)
+        {
+            var result = SubwayLocationComparer.GetTwoClosestSubways(locations);
+            var (tb1, tb2, distance) = result;
+
+            //two locations furthest apart from each other
+            Console.WriteLine($"{tb1.Name} and {tb2.Name} are the two Taco Bells closest together.");
+            //Distance in miles
+            Console.WriteLine($"They are {ConversionHelper.ConvertMetersToMiles(distance)} miles apart.");
+        }
     }
 }

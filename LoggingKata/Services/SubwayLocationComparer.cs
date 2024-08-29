@@ -50,7 +50,7 @@ namespace LoggingKata
             ITrackable sb1 = new Subway();
             ITrackable sb2 = new Subway();
 
-            double distance = 0;
+            double minDistance = double.MaxValue;
 
             for (int i = 0; i < locations.Length; i++)
             {
@@ -71,9 +71,10 @@ namespace LoggingKata
                     var corB = new GeoCoordinate(locB.Location.Latitude, locB.Location.Longitude);
 
                     // Comparing and updating the distance 
-                    if (corA.GetDistanceTo(corB) > distance)
+                    double distance = corA.GetDistanceTo(corB);
+                    if ( distance > 0 && distance <minDistance)
                     {
-                        distance = corA.GetDistanceTo(corB);
+                        minDistance = distance;
                         sb1 = locA;
                         sb2 = locB;
                     }
@@ -82,7 +83,7 @@ namespace LoggingKata
                 #endregion
             }
 
-            return (sb1, sb2, distance);
+            return (sb1, sb2, minDistance);
         }
     }
 }
